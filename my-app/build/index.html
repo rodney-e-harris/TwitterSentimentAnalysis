@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Twitter Sentiment Analysis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            background-color: #1da1f2;
+            color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.5;
+            padding: 0 20px;
+        }
+
+        form {
+            background-color: white;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="text"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        input[type="submit"] {
+            background-color: #1da1f2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0c84d2;
+        }
+    </style>
+    <script>
+        function submitForm() {
+            var keyword = document.getElementById('keyword').value;
+            var sampleNum = document.getElementById('sampleNum').value;
+            var form = document.getElementById('searchForm');
+            form.method = "POST";
+            form.action = 'http://localhost:5000/search/' + encodeURIComponent(keyword);
+            form.submit();
+        }
+    </script>
+</head>
+<body>
+    <h1>Twitter Sentiment Analysis: A Python application that returns the sentiment analysis of the most recent tweets based on keyword entry!</h1>
+    <p>Enter a keyword and it'll return 100 tweets relating to the keyword. This limit can be adjusted in app.py. </p>
+    <p>You can learn how to generate Twitter API keys at https://developer.twitter.com/en/docs/twitter-api/getting-started/getting-access-to-the-twitter-api </p>
+    <p>Because this is application is meant to be run in an isolated environment, the keys can be added in app.py for the purposes of testing. </p>
+
+    <form action="/search" method="POST">
+        <p>Keyword <input type="text" name="keyword" /></p>
+    </form>
+</body>
+</html>
